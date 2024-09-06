@@ -14,6 +14,8 @@ data_fear = data.loc[data['predicted_emotion'] == 'fear']
 data_disgust = data.loc[data['predicted_emotion'] == 'disgust']
 
 
+
+#ANGER
 dominance = data_anger['D']
 valence = data_anger['V']
 arousal = data_anger['A']
@@ -32,6 +34,8 @@ plt.title('Anger')
 plt.show()
 
 
+
+#DISGUST
 dominance = data_disgust['D']
 valence = data_disgust['V']
 arousal = data_disgust['A']
@@ -50,6 +54,8 @@ plt.title('Disgust')
 plt.show()
 
 
+
+#FEAR
 dominance = data_fear['D']
 valence = data_fear['V']
 arousal = data_fear['A']
@@ -67,6 +73,9 @@ ax.set_zlabel('Dominance')
 plt.title('Fear')
 plt.show()
 
+
+
+#JOY
 dominance = data_joy['D']
 valence = data_joy['V']
 arousal = data_joy['A']
@@ -85,6 +94,8 @@ plt.title('Joy')
 plt.show()
 
 
+
+#NEUTRAL
 dominance = data_neutral['D']
 valence = data_neutral['V']
 arousal = data_neutral['A']
@@ -103,6 +114,8 @@ plt.title('Neutral')
 plt.show()
 
 
+
+#SADNESS
 dominance = data_sadness['D']
 valence = data_sadness['V']
 arousal = data_sadness['A']
@@ -121,6 +134,8 @@ plt.title('Sadness')
 plt.show()
 
 
+
+#SURPRISE
 dominance = data_surprise['D']
 valence = data_surprise['V']
 arousal = data_surprise['A']
