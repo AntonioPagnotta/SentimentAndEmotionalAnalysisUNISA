@@ -1,8 +1,6 @@
 import warnings
 warnings.filterwarnings("ignore")
 warnings.filterwarnings("ignore", category=DeprecationWarning)
-import math
-import spacy
 import pandas as pd
 import numpy as np
 import textstat
