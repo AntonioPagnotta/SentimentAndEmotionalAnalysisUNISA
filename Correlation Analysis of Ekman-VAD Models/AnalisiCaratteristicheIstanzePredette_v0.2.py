@@ -24,6 +24,12 @@ primary_anger, secondary_anger = train_test_split(data_anger, test_size=0.2, ran
 primary_fear, secondary_fear = train_test_split(data_fear, test_size=0.2, random_state=42)
 primary_disgust, secondary_disgust = train_test_split(data_disgust, test_size=0.2, random_state=42)
 
+primary_data = pd.concat([primary_neutral, primary_joy, primary_surprise, primary_sadness, primary_anger, primary_fear, primary_disgust], axis=0).reset_index(drop=True)
+secondary_data = pd.concat([secondary_neutral, secondary_joy, secondary_surprise, secondary_sadness, secondary_anger, secondary_fear, secondary_disgust], axis=0).reset_index(drop=True)
+
+primary_data.to_csv('ekman_predictions_arpanghoshal_EkmanClassifier_PRIMARY_dataset.csv', index=False)
+secondary_data.to_csv('ekman_predictions_arpanghoshal_EkmanClassifier_SECONDARY_dataset.csv', index=False)
+
 
 #NEUTRAL
 data_neutral['V_diff'] = data_neutral['V'].sub(3)
