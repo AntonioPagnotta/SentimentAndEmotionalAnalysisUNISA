@@ -53,9 +53,9 @@ error_score = metrics.r2_score(Y_train, training_data_prediction)
 print("R squared Error : ", error_score)
 
 plt.scatter(Y_train, training_data_prediction)
-plt.xlabel("Actual V Value")
-plt.ylabel("Predicted V Value")
-plt.title(" Actual vs Predicted V Value")
+plt.xlabel("Actual D Value")
+plt.ylabel("Predicted D Value")
+plt.title(" Actual vs Predicted D Value")
 plt.xlim(1, 5)
 plt.ylim(1, 5)
 plt.show()
@@ -69,9 +69,9 @@ print('\033[32mRoot Mean Squared Error (RMSE):', metrics.mean_squared_error(Y_te
 print('R^2:', metrics.r2_score(Y_test, test_data_prediction))
 
 plt.scatter(Y_test, test_data_prediction)
-plt.xlabel("Actual V Value")
-plt.ylabel("Predicted V Value")
-plt.title(" Actual vs Predicted V Value")
+plt.xlabel("Actual D Value")
+plt.ylabel("Predicted D Value")
+plt.title("LINEAR REGRESSOR D Values Predictions")
 plt.xlim(1, 5)
 plt.ylim(1, 5)
 plt.show()
@@ -88,9 +88,9 @@ error_score = metrics.r2_score(Y_train, training_data_prediction)
 print("R squared Error : ", error_score)
 
 plt.scatter(Y_train, training_data_prediction)
-plt.xlabel("Actual V Value")
-plt.ylabel("Predicted V Value")
-plt.title(" Actual vs Predicted V Value")
+plt.xlabel("Actual D Value")
+plt.ylabel("Predicted D Value")
+plt.title("LASSO REGRESSOR D Values Predictions")
 plt.xlim(1, 5)
 plt.ylim(1, 5)
 plt.show()
@@ -104,9 +104,9 @@ print('\033[32mRoot Mean Squared Error (RMSE):', metrics.mean_squared_error(Y_te
 print('R^2:', metrics.r2_score(Y_test, test_data_prediction))
 
 plt.scatter(Y_test, test_data_prediction)
-plt.xlabel("Actual V Value")
-plt.ylabel("Predicted V Value")
-plt.title(" Actual vs Predicted V Value")
+plt.xlabel("Actual D Value")
+plt.ylabel("Predicted D Value")
+plt.title("LASSO REGRESSOR D Values Predictions")
 plt.xlim(1, 5)
 plt.ylim(1, 5)
 plt.show()
@@ -123,9 +123,9 @@ error_score = metrics.r2_score(Y_train, training_data_prediction)
 print("R squared Error : ", error_score)
 
 plt.scatter(Y_train, training_data_prediction)
-plt.xlabel("Actual V Value")
-plt.ylabel("Predicted V Value")
-plt.title(" Actual vs Predicted V Value")
+plt.xlabel("Actual D Value")
+plt.ylabel("Predicted D Value")
+plt.title("RANDOM FOREST REGRESSOR D Values Predictions")
 plt.xlim(1, 5)
 plt.ylim(1, 5)
 plt.show()
@@ -139,9 +139,9 @@ print('\033[32mRoot Mean Squared Error (RMSE):', metrics.mean_squared_error(Y_te
 print('R^2:', metrics.r2_score(Y_test, test_data_prediction))
 
 plt.scatter(Y_test, test_data_prediction)
-plt.xlabel("Actual V Value")
-plt.ylabel("Predicted V Value")
-plt.title(" Actual vs Predicted V Value")
+plt.xlabel("Actual D Value")
+plt.ylabel("Predicted D Value")
+plt.title("RANDOM FOREST REGRESSOR D Values Predictions")
 plt.xlim(1, 5)
 plt.ylim(1, 5)
 plt.show()
@@ -158,25 +158,25 @@ error_score = metrics.r2_score(Y_train, training_data_prediction)
 print("R squared Error : ", error_score)
 
 plt.scatter(Y_train, training_data_prediction)
-plt.xlabel("Actual V Value")
-plt.ylabel("Predicted V Value")
-plt.title(" Actual vs Predicted V Value")
+plt.xlabel("Actual D Value")
+plt.ylabel("Predicted D Value")
+plt.title("RANDOM FOREST REGRESSOR D Values Predictions")
 plt.xlim(1, 5)
 plt.ylim(1, 5)
 plt.show()
 '''
 
 test_data_prediction = grad_boost_model.predict(X_test)
-print("\nRADIENT BOOSTING REGRESSOR")
+print("\nGRADIENT BOOSTING REGRESSOR")
 print('Mean Absolute Error (MAE):', metrics.mean_absolute_error(Y_test, test_data_prediction))
 print('Mean Squared Error (MSE):', metrics.mean_squared_error(Y_test, test_data_prediction))
 print('\033[32mRoot Mean Squared Error (RMSE):', metrics.mean_squared_error(Y_test, test_data_prediction, squared=False), '\033[0m')
 print('R^2:', metrics.r2_score(Y_test, test_data_prediction))
 
 plt.scatter(Y_test, test_data_prediction)
-plt.xlabel("Actual V Value")
-plt.ylabel("Predicted V Value")
-plt.title(" Actual vs Predicted V Value")
+plt.xlabel("Actual D Value")
+plt.ylabel("Predicted D Value")
+plt.title("GRADIENT BOOSTING REGRESSOR D Values Predictions")
 plt.xlim(1, 5)
 plt.ylim(1, 5)
 plt.show()
@@ -199,15 +199,16 @@ Root Mean Squared Error (RMSE): 0.35067495799227755
 R^2: -0.0002171784968727497
 
 RANDOM FOREST REGRESSOR
-Mean Absolute Error (MAE): 0.17798301413912143
-Mean Squared Error (MSE): 0.0624230557381324
-Root Mean Squared Error (RMSE): 0.24984606408373217 
-R^2: 0.4922735057890185
+Mean Absolute Error (MAE): 0.1777807372204095
+Mean Squared Error (MSE): 0.0623745106194169
+Root Mean Squared Error (RMSE): 0.24974889513152385 
+R^2: 0.49266835417708643
 
-RADIENT BOOSTING REGRESSOR
-Mean Absolute Error (MAE): 0.1761090249258594
-Mean Squared Error (MSE): 0.05925015057766398
-Root Mean Squared Error (RMSE): 0.24341353819716763 
-R^2: 0.5180807655352675
+GRADIENT BOOSTING REGRESSOR
+Mean Absolute Error (MAE): 0.17620046104121792
+Mean Squared Error (MSE): 0.059272482855059164
+Root Mean Squared Error (RMSE): 0.24345940699644195 
+R^2: 0.5178991228909668
+
 
 '''

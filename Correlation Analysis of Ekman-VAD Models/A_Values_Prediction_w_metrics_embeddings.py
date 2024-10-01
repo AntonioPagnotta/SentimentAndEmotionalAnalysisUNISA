@@ -71,7 +71,7 @@ print('R^2:', metrics.r2_score(Y_test, test_data_prediction))
 plt.scatter(Y_test, test_data_prediction)
 plt.xlabel("Actual A Value")
 plt.ylabel("Predicted A Value")
-plt.title(" Actual vs Predicted A Value")
+plt.title("LINEAR REGRESSOR A Values Predictions")
 plt.xlim(1, 5)
 plt.ylim(1, 5)
 plt.show()
@@ -106,7 +106,7 @@ print('R^2:', metrics.r2_score(Y_test, test_data_prediction))
 plt.scatter(Y_test, test_data_prediction)
 plt.xlabel("Actual A Value")
 plt.ylabel("Predicted A Value")
-plt.title(" Actual vs Predicted A Value")
+plt.title("LASSO REGRESSOR A Values Predictions")
 plt.xlim(1, 5)
 plt.ylim(1, 5)
 plt.show()
@@ -141,7 +141,7 @@ print('R^2:', metrics.r2_score(Y_test, test_data_prediction))
 plt.scatter(Y_test, test_data_prediction)
 plt.xlabel("Actual A Value")
 plt.ylabel("Predicted A Value")
-plt.title(" Actual vs Predicted A Value")
+plt.title("RANDOM FOREST REGRESSOR A Values Predictions")
 plt.xlim(1, 5)
 plt.ylim(1, 5)
 plt.show()
@@ -167,7 +167,7 @@ plt.show()
 '''
 
 test_data_prediction = grad_boost_model.predict(X_test)
-print("\nRADIENT BOOSTING REGRESSOR")
+print("\nGRADIENT BOOSTING REGRESSOR")
 print('Mean Absolute Error (MAE):', metrics.mean_absolute_error(Y_test, test_data_prediction))
 print('Mean Squared Error (MSE):', metrics.mean_squared_error(Y_test, test_data_prediction))
 print('\033[32mRoot Mean Squared Error (RMSE):', metrics.mean_squared_error(Y_test, test_data_prediction, squared=False), '\033[0m')
@@ -176,7 +176,7 @@ print('R^2:', metrics.r2_score(Y_test, test_data_prediction))
 plt.scatter(Y_test, test_data_prediction)
 plt.xlabel("Actual A Value")
 plt.ylabel("Predicted A Value")
-plt.title(" Actual vs Predicted A Value")
+plt.title("GRADIENT BOOSTING REGRESSOR A Values Predictions")
 plt.xlim(1, 5)
 plt.ylim(1, 5)
 plt.show()
@@ -199,14 +199,15 @@ Root Mean Squared Error (RMSE): 0.2622718266496529
 R^2: -0.001146480083616952
 
 RANDOM FOREST REGRESSOR
-Mean Absolute Error (MAE): 0.15965437601472235
-Mean Squared Error (MSE): 0.044037171275878285
-Root Mean Squared Error (RMSE): 0.2098503544811833 
-R^2: 0.3590653408633978
+Mean Absolute Error (MAE): 0.15961035905408175
+Mean Squared Error (MSE): 0.04366539800472087
+Root Mean Squared Error (RMSE): 0.20896267131887664 
+R^2: 0.36447627821295225
 
-RADIENT BOOSTING REGRESSOR
-Mean Absolute Error (MAE): 0.1557855815095136
-Mean Squared Error (MSE): 0.04111375704937204
-Root Mean Squared Error (RMSE): 0.20276527574851677 
-R^2: 0.4016138844345244
+GRADIENT BOOSTING REGRESSOR
+Mean Absolute Error (MAE): 0.15578277347216507
+Mean Squared Error (MSE): 0.04110526754237497
+Root Mean Squared Error (RMSE): 0.20274434034609937 
+R^2: 0.40173744412547996
+
 '''
