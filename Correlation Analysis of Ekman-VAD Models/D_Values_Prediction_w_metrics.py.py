@@ -43,14 +43,15 @@ data = data.dropna()
 primary_dataset = primary_dataset.dropna()
 secondary_dataset = secondary_dataset.dropna()
 
-X_train = primary_dataset.drop(['A'], axis=1)
-Y_train = primary_dataset['A']
+X_train = primary_dataset.drop(['D'], axis=1)
+Y_train = primary_dataset['D']
 
-X_test = secondary_dataset.drop(['A'], axis=1)
-Y_test = secondary_dataset['A']
+X_test = secondary_dataset.drop(['D'], axis=1)
+Y_test = secondary_dataset['D']
 
 
-#LINEAR REGRESSION
+
+#LINEAR REGRESSOR
 lin_reg_model = LinearRegression()
 lin_reg_model.fit(X_train,Y_train)
 
@@ -60,9 +61,9 @@ error_score = metrics.r2_score(Y_train, training_data_prediction)
 print("R squared Error : ", error_score)
 
 plt.scatter(Y_train, training_data_prediction)
-plt.xlabel("Actual A Value")
-plt.ylabel("Predicted A Value")
-plt.title(" Actual vs Predicted A Value")
+plt.xlabel("Actual D Value")
+plt.ylabel("Predicted D Value")
+plt.title(" Actual vs Predicted D Value")
 plt.xlim(1, 5)
 plt.ylim(1, 5)
 plt.show()
@@ -76,9 +77,9 @@ print('\033[32mRoot Mean Squared Error (RMSE):', metrics.mean_squared_error(Y_te
 print('R^2:', metrics.r2_score(Y_test, test_data_prediction))
 
 plt.scatter(Y_test, test_data_prediction)
-plt.xlabel("Actual A Value")
-plt.ylabel("Predicted A Value")
-plt.title(" Actual vs Predicted A Value")
+plt.xlabel("Actual D Value")
+plt.ylabel("Predicted D Value")
+plt.title("LINEAR REGRESSOR D Values Predictions")
 plt.xlim(1, 5)
 plt.ylim(1, 5)
 plt.show()
@@ -95,9 +96,9 @@ error_score = metrics.r2_score(Y_train, training_data_prediction)
 print("R squared Error : ", error_score)
 
 plt.scatter(Y_train, training_data_prediction)
-plt.xlabel("Actual A Value")
-plt.ylabel("Predicted A Value")
-plt.title(" Actual vs Predicted A Value")
+plt.xlabel("Actual D Value")
+plt.ylabel("Predicted D Value")
+plt.title(" Actual vs Predicted D Value")
 plt.xlim(1, 5)
 plt.ylim(1, 5)
 plt.show()
@@ -111,9 +112,9 @@ print('\033[32mRoot Mean Squared Error (RMSE):', metrics.mean_squared_error(Y_te
 print('R^2:', metrics.r2_score(Y_test, test_data_prediction))
 
 plt.scatter(Y_test, test_data_prediction)
-plt.xlabel("Actual A Value")
-plt.ylabel("Predicted A Value")
-plt.title(" Actual vs Predicted A Value")
+plt.xlabel("Actual D Value")
+plt.ylabel("Predicted D Value")
+plt.title("LASSO REGRESSOR D Values Predictions")
 plt.xlim(1, 5)
 plt.ylim(1, 5)
 plt.show()
@@ -130,9 +131,9 @@ error_score = metrics.r2_score(Y_train, training_data_prediction)
 print("R squared Error : ", error_score)
 
 plt.scatter(Y_train, training_data_prediction)
-plt.xlabel("Actual A Value")
-plt.ylabel("Predicted A Value")
-plt.title(" Actual vs Predicted A Value")
+plt.xlabel("Actual D Value")
+plt.ylabel("Predicted D Value")
+plt.title(" Actual vs Predicted D Value")
 plt.xlim(1, 5)
 plt.ylim(1, 5)
 plt.show()
@@ -146,9 +147,9 @@ print('\033[32mRoot Mean Squared Error (RMSE):', metrics.mean_squared_error(Y_te
 print('R^2:', metrics.r2_score(Y_test, test_data_prediction))
 
 plt.scatter(Y_test, test_data_prediction)
-plt.xlabel("Actual A Value")
-plt.ylabel("Predicted A Value")
-plt.title(" Actual vs Predicted A Value")
+plt.xlabel("Actual D Value")
+plt.ylabel("Predicted D Value")
+plt.title("RANDOM FOREST REGRESSOR D Values Predictions")
 plt.xlim(1, 5)
 plt.ylim(1, 5)
 plt.show()
@@ -165,27 +166,55 @@ error_score = metrics.r2_score(Y_train, training_data_prediction)
 print("R squared Error : ", error_score)
 
 plt.scatter(Y_train, training_data_prediction)
-plt.xlabel("Actual A Value")
-plt.ylabel("Predicted A Value")
-plt.title(" Actual vs Predicted A Value")
+plt.xlabel("Actual D Value")
+plt.ylabel("Predicted D Value")
+plt.title(" Actual vs Predicted D Value")
 plt.xlim(1, 5)
 plt.ylim(1, 5)
 plt.show()
 '''
 
 test_data_prediction = grad_boost_model.predict(X_test)
-print("\nRADIENT BOOSTING REGRESSOR")
+print("\nGRADIENT BOOSTING REGRESSOR")
 print('Mean Absolute Error (MAE):', metrics.mean_absolute_error(Y_test, test_data_prediction))
 print('Mean Squared Error (MSE):', metrics.mean_squared_error(Y_test, test_data_prediction))
 print('\033[32mRoot Mean Squared Error (RMSE):', metrics.mean_squared_error(Y_test, test_data_prediction, squared=False), '\033[0m')
 print('R^2:', metrics.r2_score(Y_test, test_data_prediction))
 
 plt.scatter(Y_test, test_data_prediction)
-plt.xlabel("Actual A Value")
-plt.ylabel("Predicted A Value")
-plt.title(" Actual vs Predicted A Value")
+plt.xlabel("Actual D Value")
+plt.ylabel("Predicted D Value")
+plt.title("GRADIENT BOOSTING REGRESSOR D Values Predictions")
 plt.xlim(1, 5)
 plt.ylim(1, 5)
 plt.show()
 
 
+'''
+#METRICHE
+
+LINEAR REGRESSOR
+Mean Absolute Error (MAE): 0.1392052809295413
+Mean Squared Error (MSE): 0.035283994983582534
+Root Mean Squared Error (RMSE): 0.18784034439806196 
+R^2: 0.19955215553728578
+
+LASSO REGRESSOR
+Mean Absolute Error (MAE): 0.1571442130073945
+Mean Squared Error (MSE): 0.044080437277662886
+Root Mean Squared Error (RMSE): 0.2099534169230472 
+R^2: -2.721298896224411e-06
+
+RANDOM FOREST REGRESSOR
+Mean Absolute Error (MAE): 0.1405024677259186
+Mean Squared Error (MSE): 0.03535261926690389
+Root Mean Squared Error (RMSE): 0.18802292218478014 
+R^2: 0.19799535450928607
+
+GRADIENT BOOSTING REGRESSOR
+Mean Absolute Error (MAE): 0.13674060595173593
+Mean Squared Error (MSE): 0.033377746175661825
+Root Mean Squared Error (RMSE): 0.18269577492558997 
+R^2: 0.24279705311817812
+
+'''
