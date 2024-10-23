@@ -4,8 +4,6 @@ warnings.filterwarnings("ignore", category=DeprecationWarning)
 import pandas as pd
 from sklearn import metrics
 import matplotlib.pyplot as plt
-from sentence_transformers import SentenceTransformer
-from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.linear_model import Lasso
 from sklearn.ensemble import RandomForestRegressor
@@ -28,9 +26,6 @@ Emotion encoding:
     "5": "sadness",
     "6": "surprise"
 '''
-primary_dataset.replace({'predicted_emotion':{'anger':0,'disgust':1,'fear':2,'joy':3,'neutral':4,'sadness':5,'surprise':6}},inplace=True)
-secondary_dataset.replace({'predicted_emotion':{'anger':0,'disgust':1,'fear':2,'joy':3,'neutral':4,'sadness':5,'surprise':6}},inplace=True)
-
 
 primary_dataset.info()
 secondary_dataset.info()
@@ -38,10 +33,12 @@ secondary_dataset.info()
 primary_dataset = primary_dataset.dropna()
 secondary_dataset = secondary_dataset.dropna()
 
-X_train = primary_dataset.drop(['A'], axis=1).drop(['text'], axis=1).drop(['word_count'], axis=1).drop(['syllable_count'], axis=1).drop(['letter_count'], axis=1).drop(['unique_words'], axis=1).drop(['mean_word_length'], axis=1).drop(['std_dev_word_length'], axis=1).drop(['flesch_reading_ease'], axis=1).drop(['flesch_kincaid_grade'], axis=1).drop(['gunning_fog'], axis=1).drop(['automated_readability_index'], axis=1).drop(['coleman_liau_index'], axis=1).drop(['linsear_write_formula'], axis=1).drop(['dale_chall_readability_score'], axis=1).drop(['mcalpine_eflaw'], axis=1).drop(['reading_time'], axis=1)
+X_train = primary_dataset.drop(['A'], axis=1).drop(['text'], axis=1)
+X_train = X_train.drop(['predicted_emotion'], axis=1)
 Y_train = primary_dataset['A']
 
-X_test = secondary_dataset.drop(['A'], axis=1).drop(['text'], axis=1).drop(['word_count'], axis=1).drop(['syllable_count'], axis=1).drop(['letter_count'], axis=1).drop(['unique_words'], axis=1).drop(['mean_word_length'], axis=1).drop(['std_dev_word_length'], axis=1).drop(['flesch_reading_ease'], axis=1).drop(['flesch_kincaid_grade'], axis=1).drop(['gunning_fog'], axis=1).drop(['automated_readability_index'], axis=1).drop(['coleman_liau_index'], axis=1).drop(['linsear_write_formula'], axis=1).drop(['dale_chall_readability_score'], axis=1).drop(['mcalpine_eflaw'], axis=1).drop(['reading_time'], axis=1)
+X_test = secondary_dataset.drop(['A'], axis=1).drop(['text'], axis=1)
+X_test = X_test.drop(['predicted_emotion'], axis=1)
 Y_test = secondary_dataset['A']
 
 
@@ -189,10 +186,10 @@ plt.show()
 #METRICHE
 
 LINEAR REGRESSOR
-Mean Absolute Error (MAE): 0.17050541429271918
-Mean Squared Error (MSE): 0.048371224917990556
-Root Mean Squared Error (RMSE): 0.21993459236325366 
-R^2: 0.29598578526740593
+Mean Absolute Error (MAE): 0.17054580914805398
+Mean Squared Error (MSE): 0.04837929683090907
+Root Mean Squared Error (RMSE): 0.21995294231018842 
+R^2: 0.2958683034082148
 
 LASSO REGRESSOR
 Mean Absolute Error (MAE): 0.19698683793927288
@@ -201,15 +198,15 @@ Root Mean Squared Error (RMSE): 0.2622718266496529
 R^2: -0.001146480083616952
 
 RANDOM FOREST REGRESSOR
-Mean Absolute Error (MAE): 0.1590289946564525
-Mean Squared Error (MSE): 0.04357181385709752
-Root Mean Squared Error (RMSE): 0.2087386256951442 
-R^2: 0.36583833944485555
+Mean Absolute Error (MAE): 0.15961035905408175
+Mean Squared Error (MSE): 0.04366539800472087
+Root Mean Squared Error (RMSE): 0.20896267131887664 
+R^2: 0.36447627821295225
 
 GRADIENT BOOSTING REGRESSOR
-Mean Absolute Error (MAE): 0.15582117461767503
-Mean Squared Error (MSE): 0.04106488014311282
-Root Mean Squared Error (RMSE): 0.20264471407641704 
-R^2: 0.4023252585383844
+Mean Absolute Error (MAE): 0.15578277347216507
+Mean Squared Error (MSE): 0.04110526754237497
+Root Mean Squared Error (RMSE): 0.20274434034609937 
+R^2: 0.40173744412547996
 
 '''

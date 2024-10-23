@@ -1,20 +1,22 @@
-import warnings
-warnings.filterwarnings("ignore")
-warnings.filterwarnings("ignore", category=DeprecationWarning)
 import pandas as pd
-from sklearn import metrics
-import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 from sklearn.linear_model import Lasso
 from sklearn.ensemble import RandomForestRegressor
-from sklearn.ensemble import GradientBoostingRegressor
+from sklearn import metrics
+import matplotlib.pyplot as plt
+from sklearn import ensemble
 
 
-primary_dataset = pd.read_csv('ekman_predictions_arpanghoshal_EkmanClassifier_PRIMARY_dataset_v0.2.csv')
-secondary_dataset = pd.read_csv('ekman_predictions_arpanghoshal_EkmanClassifier_SECONDARY_dataset_v0.2.csv')
 
-primary_dataset.replace({'predicted_emotion':{'anger':0,'disgust':1,'fear':2,'joy':3,'neutral':4,'sadness':5,'surprise':6}},inplace=True)
-secondary_dataset.replace({'predicted_emotion':{'anger':0,'disgust':1,'fear':2,'joy':3,'neutral':4,'sadness':5,'surprise':6}},inplace=True)
+data = pd.read_csv('ekman_predictions_arpanghoshal_EkmanClassifier_characteristics_analysis.csv')
+primary_dataset = pd.read_csv('ekman_predictions_arpanghoshal_EkmanClassifier_PRIMARY_dataset.csv')
+secondary_dataset = pd.read_csv('ekman_predictions_arpanghoshal_EkmanClassifier_SECONDARY_dataset.csv')
+
+
+data = data.drop(['text'], axis=1)
+primary_dataset = primary_dataset.drop(['text'], axis=1)
+secondary_dataset = secondary_dataset.drop(['text'], axis=1)
+
 
 '''
 Emotion encoding:
@@ -26,24 +28,31 @@ Emotion encoding:
     "5": "sadness",
     "6": "surprise"
 '''
-primary_dataset.replace({'predicted_emotion':{'anger':0,'disgust':1,'fear':2,'joy':3,'neutral':4,'sadness':5,'surprise':6}},inplace=True)
-secondary_dataset.replace({'predicted_emotion':{'anger':0,'disgust':1,'fear':2,'joy':3,'neutral':4,'sadness':5,'surprise':6}},inplace=True)
 
 
+data.info()
 primary_dataset.info()
 secondary_dataset.info()
 
+data = data.dropna()
 primary_dataset = primary_dataset.dropna()
 secondary_dataset = secondary_dataset.dropna()
 
-X_train = primary_dataset.drop(['V'], axis=1).drop(['text'], axis=1).drop(['word_count'], axis=1).drop(['syllable_count'], axis=1).drop(['letter_count'], axis=1).drop(['unique_words'], axis=1).drop(['mean_word_length'], axis=1).drop(['std_dev_word_length'], axis=1).drop(['flesch_reading_ease'], axis=1).drop(['flesch_kincaid_grade'], axis=1).drop(['gunning_fog'], axis=1).drop(['automated_readability_index'], axis=1).drop(['coleman_liau_index'], axis=1).drop(['linsear_write_formula'], axis=1).drop(['dale_chall_readability_score'], axis=1).drop(['mcalpine_eflaw'], axis=1).drop(['reading_time'], axis=1)
-Y_train = primary_dataset['V']
+X_train = primary_dataset.drop(['V'], axis=1)
+X_train = X_train.drop(['A'], axis=1)
+X_train = X_train.drop(['D'], axis=1)
+X_train = X_train.drop(['predicted_emotion'], axis=1)
+Y_train = primary_dataset['D']
 
-X_test = secondary_dataset.drop(['V'], axis=1).drop(['text'], axis=1).drop(['word_count'], axis=1).drop(['syllable_count'], axis=1).drop(['letter_count'], axis=1).drop(['unique_words'], axis=1).drop(['mean_word_length'], axis=1).drop(['std_dev_word_length'], axis=1).drop(['flesch_reading_ease'], axis=1).drop(['flesch_kincaid_grade'], axis=1).drop(['gunning_fog'], axis=1).drop(['automated_readability_index'], axis=1).drop(['coleman_liau_index'], axis=1).drop(['linsear_write_formula'], axis=1).drop(['dale_chall_readability_score'], axis=1).drop(['mcalpine_eflaw'], axis=1).drop(['reading_time'], axis=1)
-Y_test = secondary_dataset['V']
+X_test = secondary_dataset.drop(['V'], axis=1)
+X_test = X_test.drop(['A'], axis=1)
+X_test = X_test.drop(['D'], axis=1)
+X_test = X_test.drop(['predicted_emotion'], axis=1)
+Y_test = secondary_dataset['D']
 
 
-#LINEAR REGRESSION
+
+#LINEAR REGRESSOR
 lin_reg_model = LinearRegression()
 lin_reg_model.fit(X_train,Y_train)
 
@@ -53,9 +62,9 @@ error_score = metrics.r2_score(Y_train, training_data_prediction)
 print("R squared Error : ", error_score)
 
 plt.scatter(Y_train, training_data_prediction)
-plt.xlabel("Actual V Value")
-plt.ylabel("Predicted V Value")
-plt.title(" Actual vs Predicted V Value")
+plt.xlabel("Actual D Value")
+plt.ylabel("Predicted D Value")
+plt.title(" Actual vs Predicted D Value")
 plt.xlim(1, 5)
 plt.ylim(1, 5)
 plt.show()
@@ -69,9 +78,9 @@ print('\033[32mRoot Mean Squared Error (RMSE):', metrics.mean_squared_error(Y_te
 print('R^2:', metrics.r2_score(Y_test, test_data_prediction))
 
 plt.scatter(Y_test, test_data_prediction)
-plt.xlabel("Actual V Value")
-plt.ylabel("Predicted V Value")
-plt.title("LINEAR REGRESSOR V Values Predictions")
+plt.xlabel("Actual D Value")
+plt.ylabel("Predicted D Value")
+plt.title("LINEAR REGRESSOR D Values Predictions")
 plt.xlim(1, 5)
 plt.ylim(1, 5)
 plt.show()
@@ -88,9 +97,9 @@ error_score = metrics.r2_score(Y_train, training_data_prediction)
 print("R squared Error : ", error_score)
 
 plt.scatter(Y_train, training_data_prediction)
-plt.xlabel("Actual V Value")
-plt.ylabel("Predicted V Value")
-plt.title(" Actual vs Predicted V Value")
+plt.xlabel("Actual D Value")
+plt.ylabel("Predicted D Value")
+plt.title(" Actual vs Predicted D Value")
 plt.xlim(1, 5)
 plt.ylim(1, 5)
 plt.show()
@@ -104,9 +113,9 @@ print('\033[32mRoot Mean Squared Error (RMSE):', metrics.mean_squared_error(Y_te
 print('R^2:', metrics.r2_score(Y_test, test_data_prediction))
 
 plt.scatter(Y_test, test_data_prediction)
-plt.xlabel("Actual V Value")
-plt.ylabel("Predicted V Value")
-plt.title("LASSO REGRESSOR V Values Predictions")
+plt.xlabel("Actual D Value")
+plt.ylabel("Predicted D Value")
+plt.title("LASSO REGRESSOR D Values Predictions")
 plt.xlim(1, 5)
 plt.ylim(1, 5)
 plt.show()
@@ -123,9 +132,9 @@ error_score = metrics.r2_score(Y_train, training_data_prediction)
 print("R squared Error : ", error_score)
 
 plt.scatter(Y_train, training_data_prediction)
-plt.xlabel("Actual V Value")
-plt.ylabel("Predicted V Value")
-plt.title(" Actual vs Predicted V Value")
+plt.xlabel("Actual D Value")
+plt.ylabel("Predicted D Value")
+plt.title(" Actual vs Predicted D Value")
 plt.xlim(1, 5)
 plt.ylim(1, 5)
 plt.show()
@@ -139,9 +148,9 @@ print('\033[32mRoot Mean Squared Error (RMSE):', metrics.mean_squared_error(Y_te
 print('R^2:', metrics.r2_score(Y_test, test_data_prediction))
 
 plt.scatter(Y_test, test_data_prediction)
-plt.xlabel("Actual V Value")
-plt.ylabel("Predicted V Value")
-plt.title("RANDOM FOREST REGRESSOR V Values Predictions")
+plt.xlabel("Actual D Value")
+plt.ylabel("Predicted D Value")
+plt.title("RANDOM FOREST REGRESSOR D Values Predictions")
 plt.xlim(1, 5)
 plt.ylim(1, 5)
 plt.show()
@@ -149,7 +158,7 @@ plt.show()
 
 
 #GRADIENT BOOSTING REGRESSION
-grad_boost_model = GradientBoostingRegressor()
+grad_boost_model = ensemble.GradientBoostingRegressor()
 grad_boost_model.fit(X_train,Y_train)
 
 '''
@@ -158,9 +167,9 @@ error_score = metrics.r2_score(Y_train, training_data_prediction)
 print("R squared Error : ", error_score)
 
 plt.scatter(Y_train, training_data_prediction)
-plt.xlabel("Actual V Value")
-plt.ylabel("Predicted V Value")
-plt.title(" Actual vs Predicted V Value")
+plt.xlabel("Actual D Value")
+plt.ylabel("Predicted D Value")
+plt.title(" Actual vs Predicted D Value")
 plt.xlim(1, 5)
 plt.ylim(1, 5)
 plt.show()
@@ -174,40 +183,39 @@ print('\033[32mRoot Mean Squared Error (RMSE):', metrics.mean_squared_error(Y_te
 print('R^2:', metrics.r2_score(Y_test, test_data_prediction))
 
 plt.scatter(Y_test, test_data_prediction)
-plt.xlabel("Actual V Value")
-plt.ylabel("Predicted V Value")
-plt.title("GRADIENT BOOSTING REGRESSOR V Values Predictions")
+plt.xlabel("Actual D Value")
+plt.ylabel("Predicted D Value")
+plt.title("GRADIENT BOOSTING REGRESSOR D Values Predictions")
 plt.xlim(1, 5)
 plt.ylim(1, 5)
 plt.show()
-
 
 
 '''
 #METRICHE
 
 LINEAR REGRESSOR
-Mean Absolute Error (MAE): 0.17994883497224234
-Mean Squared Error (MSE): 0.05911930602644773
-Root Mean Squared Error (RMSE): 0.24314461957124966 
-R^2: 0.5191450076568696
+Mean Absolute Error (MAE): 0.1392052809295413
+Mean Squared Error (MSE): 0.035283994983582534
+Root Mean Squared Error (RMSE): 0.18784034439806196 
+R^2: 0.19955215553728578
 
 LASSO REGRESSOR
-Mean Absolute Error (MAE): 0.24965911089742837
-Mean Squared Error (MSE): 0.12297292616288563
-Root Mean Squared Error (RMSE): 0.35067495799227755 
-R^2: -0.0002171784968727497
+Mean Absolute Error (MAE): 0.1571442130073945
+Mean Squared Error (MSE): 0.044080437277662886
+Root Mean Squared Error (RMSE): 0.2099534169230472 
+R^2: -2.721298896224411e-06
 
 RANDOM FOREST REGRESSOR
-Mean Absolute Error (MAE): 0.1778880503144654
-Mean Squared Error (MSE): 0.062465722922873224
-Root Mean Squared Error (RMSE): 0.24993143644382398 
-R^2: 0.49192646638394366
+Mean Absolute Error (MAE): 0.1405024677259186
+Mean Squared Error (MSE): 0.03535261926690389
+Root Mean Squared Error (RMSE): 0.18802292218478014 
+R^2: 0.19799535450928607
 
 GRADIENT BOOSTING REGRESSOR
-Mean Absolute Error (MAE): 0.17665291411676748
-Mean Squared Error (MSE): 0.059033988786268185
-Root Mean Squared Error (RMSE): 0.24296911076568597 
-R^2: 0.5198389471434888
+Mean Absolute Error (MAE): 0.13674060595173593
+Mean Squared Error (MSE): 0.033377746175661825
+Root Mean Squared Error (RMSE): 0.18269577492558997 
+R^2: 0.24279705311817812
 
 '''

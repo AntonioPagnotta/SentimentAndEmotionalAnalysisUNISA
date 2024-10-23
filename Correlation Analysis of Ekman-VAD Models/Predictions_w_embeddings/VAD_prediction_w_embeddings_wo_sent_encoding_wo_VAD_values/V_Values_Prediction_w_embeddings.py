@@ -13,22 +13,6 @@ from sklearn.ensemble import GradientBoostingRegressor
 primary_dataset = pd.read_csv('ekman_predictions_arpanghoshal_EkmanClassifier_PRIMARY_dataset_v0.2.csv')
 secondary_dataset = pd.read_csv('ekman_predictions_arpanghoshal_EkmanClassifier_SECONDARY_dataset_v0.2.csv')
 
-primary_dataset.replace({'predicted_emotion':{'anger':0,'disgust':1,'fear':2,'joy':3,'neutral':4,'sadness':5,'surprise':6}},inplace=True)
-secondary_dataset.replace({'predicted_emotion':{'anger':0,'disgust':1,'fear':2,'joy':3,'neutral':4,'sadness':5,'surprise':6}},inplace=True)
-
-'''
-Emotion encoding:
-    "0": "anger",
-    "1": "disgust",
-    "2": "fear",
-    "3": "joy",
-    "4": "neutral",
-    "5": "sadness",
-    "6": "surprise"
-'''
-primary_dataset.replace({'predicted_emotion':{'anger':0,'disgust':1,'fear':2,'joy':3,'neutral':4,'sadness':5,'surprise':6}},inplace=True)
-secondary_dataset.replace({'predicted_emotion':{'anger':0,'disgust':1,'fear':2,'joy':3,'neutral':4,'sadness':5,'surprise':6}},inplace=True)
-
 
 primary_dataset.info()
 secondary_dataset.info()
@@ -36,10 +20,16 @@ secondary_dataset.info()
 primary_dataset = primary_dataset.dropna()
 secondary_dataset = secondary_dataset.dropna()
 
-X_train = primary_dataset.drop(['V'], axis=1).drop(['text'], axis=1)
+X_train = primary_dataset.drop(['V'], axis=1).drop(['text'], axis=1).drop(['word_count'], axis=1).drop(['syllable_count'], axis=1).drop(['letter_count'], axis=1).drop(['unique_words'], axis=1).drop(['mean_word_length'], axis=1).drop(['std_dev_word_length'], axis=1).drop(['flesch_reading_ease'], axis=1).drop(['flesch_kincaid_grade'], axis=1).drop(['gunning_fog'], axis=1).drop(['automated_readability_index'], axis=1).drop(['coleman_liau_index'], axis=1).drop(['linsear_write_formula'], axis=1).drop(['dale_chall_readability_score'], axis=1).drop(['mcalpine_eflaw'], axis=1).drop(['reading_time'], axis=1)
+X_train = X_train.drop(['A'], axis=1)
+X_train = X_train.drop(['D'], axis=1)
+X_train = X_train.drop(['predicted_emotion'], axis=1)
 Y_train = primary_dataset['V']
 
-X_test = secondary_dataset.drop(['V'], axis=1).drop(['text'], axis=1)
+X_test = secondary_dataset.drop(['V'], axis=1).drop(['text'], axis=1).drop(['word_count'], axis=1).drop(['syllable_count'], axis=1).drop(['letter_count'], axis=1).drop(['unique_words'], axis=1).drop(['mean_word_length'], axis=1).drop(['std_dev_word_length'], axis=1).drop(['flesch_reading_ease'], axis=1).drop(['flesch_kincaid_grade'], axis=1).drop(['gunning_fog'], axis=1).drop(['automated_readability_index'], axis=1).drop(['coleman_liau_index'], axis=1).drop(['linsear_write_formula'], axis=1).drop(['dale_chall_readability_score'], axis=1).drop(['mcalpine_eflaw'], axis=1).drop(['reading_time'], axis=1)
+X_test = X_test.drop(['A'], axis=1)
+X_test = X_test.drop(['D'], axis=1)
+X_test = X_test.drop(['predicted_emotion'], axis=1)
 Y_test = secondary_dataset['V']
 
 
@@ -187,10 +177,10 @@ plt.show()
 #METRICHE
 
 LINEAR REGRESSOR
-Mean Absolute Error (MAE): 0.18092736621519268
-Mean Squared Error (MSE): 0.059611516263669465
-Root Mean Squared Error (RMSE): 0.2441546974024245 
-R^2: 0.5151415481144896
+Mean Absolute Error (MAE): 0.17994883497224234
+Mean Squared Error (MSE): 0.05911930602644773
+Root Mean Squared Error (RMSE): 0.24314461957124966 
+R^2: 0.5191450076568696
 
 LASSO REGRESSOR
 Mean Absolute Error (MAE): 0.24965911089742837
@@ -199,15 +189,14 @@ Root Mean Squared Error (RMSE): 0.35067495799227755
 R^2: -0.0002171784968727497
 
 RANDOM FOREST REGRESSOR
-Mean Absolute Error (MAE): 0.1796016787251147
-Mean Squared Error (MSE): 0.06327626307532082
-Root Mean Squared Error (RMSE): 0.2515477351822529 
-R^2: 0.4853338267710121
+Mean Absolute Error (MAE): 0.17795349222111886
+Mean Squared Error (MSE): 0.06234062845746442
+Root Mean Squared Error (RMSE): 0.24968105346113953 
+R^2: 0.4929439393931737
 
-RADIENT BOOSTING REGRESSOR
-Mean Absolute Error (MAE): 0.17615152586923183
-Mean Squared Error (MSE): 0.05922424284673725
-Root Mean Squared Error (RMSE): 0.24336031485584755 
-R^2: 0.5182914896217584
-
+GRADIENT BOOSTING REGRESSOR
+Mean Absolute Error (MAE): 0.17665499559246653
+Mean Squared Error (MSE): 0.05903367560889545
+Root Mean Squared Error (RMSE): 0.24296846628502114 
+R^2: 0.5198414944146474
 '''
