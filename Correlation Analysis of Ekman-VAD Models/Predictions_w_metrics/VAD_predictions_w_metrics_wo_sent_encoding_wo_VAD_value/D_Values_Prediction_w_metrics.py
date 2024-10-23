@@ -8,9 +8,9 @@ from sklearn import ensemble
 
 
 
-data = pd.read_csv('ekman_predictions_arpanghoshal_EkmanClassifier_characteristics_analysis.csv')
-primary_dataset = pd.read_csv('ekman_predictions_arpanghoshal_EkmanClassifier_PRIMARY_dataset.csv')
-secondary_dataset = pd.read_csv('ekman_predictions_arpanghoshal_EkmanClassifier_SECONDARY_dataset.csv')
+data = pd.read_csv('../../ekman_predictions_arpanghoshal_EkmanClassifier_characteristics_analysis.csv')
+primary_dataset = pd.read_csv('../../ekman_predictions_arpanghoshal_EkmanClassifier_PRIMARY_dataset.csv')
+secondary_dataset = pd.read_csv('../../ekman_predictions_arpanghoshal_EkmanClassifier_SECONDARY_dataset.csv')
 
 
 data = data.drop(['text'], axis=1)
