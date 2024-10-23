@@ -13,20 +13,6 @@ from sklearn.ensemble import GradientBoostingRegressor
 primary_dataset = pd.read_csv('ekman_predictions_arpanghoshal_EkmanClassifier_PRIMARY_dataset_v0.2.csv')
 secondary_dataset = pd.read_csv('ekman_predictions_arpanghoshal_EkmanClassifier_SECONDARY_dataset_v0.2.csv')
 
-primary_dataset.replace({'predicted_emotion':{'anger':0,'disgust':1,'fear':2,'joy':3,'neutral':4,'sadness':5,'surprise':6}},inplace=True)
-secondary_dataset.replace({'predicted_emotion':{'anger':0,'disgust':1,'fear':2,'joy':3,'neutral':4,'sadness':5,'surprise':6}},inplace=True)
-
-'''
-Emotion encoding:
-    "0": "anger",
-    "1": "disgust",
-    "2": "fear",
-    "3": "joy",
-    "4": "neutral",
-    "5": "sadness",
-    "6": "surprise"
-'''
-
 primary_dataset.info()
 secondary_dataset.info()
 
@@ -36,11 +22,13 @@ secondary_dataset = secondary_dataset.dropna()
 X_train = primary_dataset.drop(['V'], axis=1).drop(['text'], axis=1)
 X_train = X_train.drop(['A'], axis=1)
 X_train = X_train.drop(['D'], axis=1)
+X_train = X_train.drop(['predicted_emotion'], axis=1)
 Y_train = primary_dataset['V']
 
 X_test = secondary_dataset.drop(['V'], axis=1).drop(['text'], axis=1)
 X_test = X_test.drop(['A'], axis=1)
 X_test = X_test.drop(['D'], axis=1)
+X_test = X_test.drop(['predicted_emotion'], axis=1)
 Y_test = secondary_dataset['V']
 
 
